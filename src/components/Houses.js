@@ -2,6 +2,16 @@ import React from 'react'
 import House from './House'
 import Form from './Form'
 
+let baseURL = ''
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3000'
+} else {
+  baseURL = 'https://obscure-retreat-15993.herokuapp.com/'
+}
+
+
+
 class Houses extends React.Component {
     constructor(props) {
         super(props)
@@ -18,7 +28,7 @@ class Houses extends React.Component {
       }
       getHouses (){
         // since we defined a proxy 'localhost:3000 in the package json, we can just fetch '/notices'
-        fetch('/houses')
+        fetch(baseURL + '/houses')
         .then(response => response.json()).then((json) => {
           return this.setState({
             houses:json
@@ -28,7 +38,7 @@ class Houses extends React.Component {
       }
       handleAdd(event, formInputs) {
         event.preventDefault()
-        fetch('/houses', {
+        fetch(baseURL + '/houses', {
           body: JSON.stringify(formInputs),
           method: 'POST',
           headers: {
@@ -70,7 +80,7 @@ class Houses extends React.Component {
     // }
 
     handleDelete (deletedHouse) {
-        fetch(`/houses/${deletedHouse.id}`, {
+        fetch(baseURL + `/houses/${deletedHouse.id}`, {
           method: 'DELETE',
           headers: {
             'Accept': 'application/json, text/plain, */*',

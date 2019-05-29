@@ -7,7 +7,7 @@ let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3000'
 } else {
-  baseURL = 'https://obscure-retreat-15993.herokuapp.com/'
+  baseURL = 'https://guarded-beyond-82349.herokuapp.com/'
 }
 
 

@@ -20,6 +20,7 @@ class Houses extends React.Component {
         }
         this.handleDelete = this.handleDelete.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
+        this.handleUpdate = this.handleUpdate.bind(this)
     }
 
     // function to fetch data and set index
@@ -97,7 +98,23 @@ class Houses extends React.Component {
         
         }
 
-    
+        handleUpdate (event, formInputs) {
+          event.preventDefault()
+          console.log(formInputs)
+          fetch(baseURL + `/houses/${formInputs.id}`, {
+            body: JSON.stringify(formInputs),
+            method: 'PUT',
+         headers: {
+           'Accept': 'application/json, text/plain, */*',
+           'Content-Type': 'application/json'
+         }
+        })
+         .then(updatedNotice => {
+           // be naughty - realistically should just rerender the one item
+           this.getHouses()
+         })
+         .catch(error => console.log(error))
+        }
       
     render () {
         return(
@@ -118,7 +135,8 @@ class Houses extends React.Component {
                         url = {house.url}
                         price = {house.price}
                         delete = {this.handleDelete}
-                        fullHouse = {house}/>
+                        fullHouse = {house}
+                        edit = {this.handleUpdate}/>
                     </div>
                 })}
                 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from './Form'
 
 class House extends React.Component {
     constructor(props) {
@@ -18,6 +19,13 @@ class House extends React.Component {
                 <h5>{this.props.price}</h5>
                 <img src={this.props.img} alt = {this.props.address} />
                 <button onClick = {() => this.props.delete(this.props.fullHouse)}>Delete</button>
+                <Form handleSubmit = {this.props.edit}
+                city = {this.props.city}
+                address = {this.props.address}
+                img = {this.props.img} id={this.props.id}
+                fullHouse = {this.props.fullHouse}/>
+
+                {/* need to make a handle change and pass it down as handleSubmit */}
                 
 
 

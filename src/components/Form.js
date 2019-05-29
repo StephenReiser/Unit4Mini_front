@@ -18,14 +18,19 @@ class Form extends React.Component {
     }
   
   componentWillMount() {
-    // if(this.props.notice) {
-    //   this.setState({
-    //     title: this.props.notice.title || '',
-    //     author: this.props.notice.author || '',
-    //     phone: this.props.notice.phone || '',
-    //     id: this.props.notice.id || ''
-    //   })
-    // }
+    if(this.props.fullHouse) {
+      this.setState({
+        address: this.props.fullHouse.address || '',
+        city: this.props.fullHouse.city || '',
+        state: this.props.fullHouse.state || '',
+        price: this.props.fullHouse.price || 0,
+        favorite: this.props.fullHouse.favorite || false,
+        url: this.props.fullHouse.url || '',
+        img: this.props.fullHouse.img || '',
+        id: this.props.fullHouse.id || '',
+       
+      })
+    }
   }
   
     handleChange (event) {
@@ -43,7 +48,9 @@ class Form extends React.Component {
             price: this.state.price,
             favorite: this.state.favorite,
             url: this.state.url,
-            img: this.state.img
+            img: this.state.img,
+            id: this.state.id
+            
         }
       )
       this.setState({
@@ -66,7 +73,7 @@ class Form extends React.Component {
           <Input
             handleChange={this.handleChange}
             name={'address'}
-            placeholder={'Address'}
+            placeholder={'address'}
             type={'text'}
             value={this.state.address}
             id={'address'}
@@ -118,3 +125,6 @@ class Form extends React.Component {
   }
 
 export default Form
+
+
+
